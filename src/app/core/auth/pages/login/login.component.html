@@ -1,0 +1,113 @@
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+        <!-- Columna izquierda: Imagen -->
+        <div class="col-lg-6 d-none d-lg-block p-0 h-100">
+            <img src="https://st3.depositphotos.com/5413744/17551/i/450/depositphotos_175513004-stock-photo-merry-christmas-and-happy-new.jpg" alt="Imagen login" class="img-fluid h-100 w-100 object-fit-cover" />
+        </div>
+
+        <!-- Columna derecha: Formulario -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center bg-light p-5 h-100 overflow-auto">
+            <div class="w-100" style="max-width: 500px; max-height: 100%; overflow-y: auto; padding-right: 1rem;">
+                <!-- aquí va todo el contenido del formulario -->
+
+                <!-- Botones para cambiar entre Login / Registro -->
+                <div class="d-flex mb-4 gap-2">
+                    <button type="button" class="btn flex-grow-1" [ngClass]="{ 'btn-primary': isLoginMode, 'btn-outline-primary': !isLoginMode }" (click)="toggleMode(true)">
+    Login
+  </button>
+                    <button type="button" class="btn flex-grow-1" [ngClass]="{ 'btn-secondary': !isLoginMode, 'btn-outline-secondary': isLoginMode }" (click)="toggleMode(false)">
+    Registrar
+  </button>
+                </div>
+
+                <h2 class="mb-4 text-center fw-bold">
+                    {{ isLoginMode ? 'Iniciar Sesión' : 'Crear Cuenta' }}
+                </h2>
+
+                <!-- FORMULARIO LOGIN -->
+                <form *ngIf="isLoginMode" (ngSubmit)="onLogin()" [formGroup]="loginForm" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Correo electrónico:</label>
+                        <input type="email" formControlName="email" class="form-control" required />
+                        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger small">
+                            Ingresa un correo válido
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Contraseña:</label>
+                        <input type="password" formControlName="password" class="form-control" required />
+                        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger small">
+                            La contraseña es requerida
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col d-flex justify-content-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rememberMe" />
+                                <label class="form-check-label" for="rememberMe">Acuérdame</label>
+                            </div>
+                        </div>
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <a href="#!">¿Olvidó la contraseña?</a>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 mb-2" [disabled]="loginForm.invalid">
+            Ingresar
+          </button>
+                </form>
+
+                <!-- FORMULARIO REGISTRO -->
+                <form *ngIf="!isLoginMode" (ngSubmit)="onRegister()" [formGroup]="registerCustomer" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nombre completo:</label>
+                        <input type="text" formControlName="name" class="form-control" required />
+                        <div *ngIf="registerCustomer.get('name')?.invalid && registerCustomer.get('name')?.touched" class="text-danger small">
+                            El nombre es requerido
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Correo electrónico:</label>
+                        <input type="email" formControlName="email" class="form-control" required />
+                        <div *ngIf="registerCustomer.get('email')?.invalid && registerCustomer.get('email')?.touched" class="text-danger small">
+                            Ingresa un correo válido
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Contraseña:</label>
+                        <input type="password" formControlName="password" class="form-control" required />
+                        <div *ngIf="registerCustomer.get('password')?.invalid && registerCustomer.get('password')?.touched" class="text-danger small">
+                            La contraseña es requerida
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Confirmar contraseña:</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control" required />
+                        <div *ngIf="registerCustomer.get('confirmPassword')?.invalid && registerCustomer.get('confirmPassword')?.touched" class="text-danger small">
+                            La confirmación es requerida
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary w-100 mb-2" [disabled]="registerCustomer.invalid">
+            Registrar
+          </button>
+                </form>
+
+                <!-- Redes sociales -->
+                <div class="text-center">
+                    <p class="fw-bold">O inicia sesión con:</p>
+                    <button type="button" class="btn btn-link btn-floating mx-1"><i class="fab fa-facebook-f"></i></button>
+                    <button type="button" class="btn btn-link btn-floating mx-1"><i class="fab fa-google"></i></button>
+                    <button type="button" class="btn btn-link btn-floating mx-1"><i class="fab fa-twitter"></i></button>
+                    <button type="button" class="btn btn-link btn-floating mx-1"><i class="fab fa-github"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

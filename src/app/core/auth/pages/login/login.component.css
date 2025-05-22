@@ -1,0 +1,14 @@
+.login-container {
+    background-color: #477cb1;
+}
+
+img.object-fit-cover {
+    object-fit: cover;
+}
+
+@media (max-width: 991.98px) {
+    .login-container .col-lg-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
