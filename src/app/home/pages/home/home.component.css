@@ -1,0 +1,16 @@
+.custom-bg-navy {
+    background-color: #001f3f;
+    /* azul marino */
+}
+
+.hover-zoom {
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0.9);
+    /* imagen más pequeña inicialmente */
+}
+
+.hover-zoom:hover {
+    transform: scale(1.05);
+    /* se agranda suavemente */
+    z-index: 1;
+}
